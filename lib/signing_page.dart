@@ -16,7 +16,7 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-  AnimationController(duration: Duration(seconds: 3),vsync: this);
+  animationController= AnimationController(duration: Duration(seconds: 4),vsync: this);
   animation1 =Tween(begin: -1.0,end: 0.0).animate(CurvedAnimation(
     curve: Curves.fastOutSlowIn,
     parent: animationController
