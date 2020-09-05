@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello/signing_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class SignUp extends StatefulWidget {
   @override
@@ -7,9 +9,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin{
+
   Animation animation1,animation2;
   AnimationController animationController;
-
+  String email,password,nickName;
+  final _auth=FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
@@ -37,14 +41,16 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin{
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Transform(
-            transform: Matrix4.translationValues(animation1.value*width2, 0.0, 0.0),
-            child: Container(
+          Flexible(
+            child: Transform(
+              transform: Matrix4.translationValues(animation1.value*width2, 0.0, 0.0),
               child: Container(
-                padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                child: Text(
-                  'Signup .',
-                  style: TextStyle(fontSize: 70),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                  child: Text(
+                    'Signup .',
+                    style: TextStyle(fontSize: 70),
+                  ),
                 ),
               ),
             ),
@@ -57,16 +63,26 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin{
                 children: [
                   Container(
                     child: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
                       decoration: InputDecoration(
                           labelText: 'EMAIL',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
                           focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green))
                       ),
+                      onChanged: (value){
+                        email=value;
+                      }
+                      ,
 
                     ),
                   ),
                   SizedBox(height: 20,),
                   Container(
                     child: TextField(
+                      textAlign: TextAlign.center,
+                      onChanged: (value){
+                         password=value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'PASSWORD',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green),
@@ -79,6 +95,9 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin{
                   Container(
 
                     child: TextField(
+                      onChanged: (value){
+                        nickName=value;
+                      },
                       decoration: InputDecoration(
                         labelText: 'NICK NAME',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
                         focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green),
@@ -97,7 +116,19 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin{
                     ),
                     child: FlatButton(
                       child: Text('SIGNUP',style: TextStyle(color: Colors.white,fontSize: 30),),
-                      onPressed: (){},
+                      onPressed: () async{
+                        try {
+                          final _newUser = _auth.createUserWithEmailAndPassword(
+                              email: email, password: password);
+                          if(_newUser !=null){
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return SigningPage();
+                            }));
+
+                          }
+                        }catch(e){
+                      print(e);
+                        }},
                     ),
                   ),SizedBox(height: 20.0,),
                   Container(

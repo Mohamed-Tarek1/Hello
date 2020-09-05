@@ -44,26 +44,28 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Transform(
-            transform: Matrix4.translationValues(animation1.value*width, 0.0, 0.0),
-            child: Container(
-              child: Stack(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                      child: Text(
-                        'Hello',
-                        style: TextStyle(fontSize: 70),
+          Flexible(
+            child: Transform(
+              transform: Matrix4.translationValues(animation1.value*width, 0.0, 0.0),
+              child: Container(
+                child: Stack(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
+                        child: Text(
+                          'Hello',
+                          style: TextStyle(fontSize: 70),
+                        ),
                       ),
-                    ),
-                    Container(
-                      padding:  EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
-                      child: Text(
-                        'There,',
-                        style: TextStyle(fontSize: 70),
+                      Container(
+                        padding:  EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
+                        child: Text(
+                          'There,',
+                          style: TextStyle(fontSize: 70),
+                        ),
                       ),
-                    ),
-                   ],),
+                     ],),
+              ),
             ),
           ),
           Transform(
@@ -74,6 +76,9 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
                 children: [
                   Container(
                     child: TextField(
+
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         labelText: 'EMAIL',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green))
@@ -84,6 +89,7 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
                   SizedBox(height: 20,),
                   Container(
                     child: TextField(
+                      textAlign: TextAlign.center,
                       decoration: InputDecoration(
                           labelText: 'PASSWORD',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
                           focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.green),
