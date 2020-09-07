@@ -1,6 +1,6 @@
 # hello
 
-A signing and registration widgest
+A Furniture shop mobile application with Flutter that allow user to take a look about alot of furnitures and buy what he like .
 
 ## Getting Started
 
