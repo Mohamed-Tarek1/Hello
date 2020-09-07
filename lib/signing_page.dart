@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'home_page.dart';
 import 'signup_page.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'navigator_drawer.dart';
 class SigningPage extends StatefulWidget {
 
   @override
@@ -12,7 +14,8 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
 
   Animation animation1,animation2,animation3;
   AnimationController animationController;
-
+  final _auth = FirebaseAuth.instance;
+  String email,password;
   @override
   void initState() {
     super.initState();
@@ -76,7 +79,9 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
                 children: [
                   Container(
                     child: TextField(
-
+                    onChanged: (value){
+                      email=value;
+                    },
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -89,6 +94,9 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
                   SizedBox(height: 20,),
                   Container(
                     child: TextField(
+                      onChanged: (value){
+                        password = value;
+                      },
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                           labelText: 'PASSWORD',labelStyle: TextStyle(fontSize: 20,color: Colors.grey),
@@ -118,7 +126,21 @@ class _SigningPageState extends State<SigningPage> with SingleTickerProviderStat
                     ),
                     child: FlatButton(
                       child: Text('LOGIN',style: TextStyle(color: Colors.white,fontSize: 30),),
-                      onPressed: (){},
+                      onPressed: ()async{
+                        try {
+                          final _newUser = _auth.signInWithEmailAndPassword(
+                              email: email, password: password);
+                          if(_newUser !=null){
+                            NavigatorDrawer.isLoggedIn=true;
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return HomePage();
+                            }));
+
+                          }
+                        }catch(e){
+                          print(e);
+                        }
+                      },
                     ),
                   ),SizedBox(height: 10.0,),
                   Container(
