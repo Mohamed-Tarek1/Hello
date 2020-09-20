@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'all_sales.dart';
+import '../lib/all_sales.dart';
 class FlashSale extends StatefulWidget {
   @override
   _FlashSaleState createState() => _FlashSaleState();
@@ -36,12 +36,12 @@ class _FlashSaleState extends State<FlashSale> {
               builder: (BuildContext context) {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(5,5,5,10),
-                  child: Card(
-                      child: Container(
-                        width: 400,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                        ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width*0.85,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    child: Card(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,9 +61,9 @@ class _FlashSaleState extends State<FlashSale> {
                                         maxLines: 2,textAlign: TextAlign.left,
                                         textDirection: TextDirection.ltr,overflow: TextOverflow.clip),
                                   ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
                         width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
@@ -76,8 +76,8 @@ class _FlashSaleState extends State<FlashSale> {
                             Text("Sale", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.white,)),
                           ],
                         ),
+                        ),
                       ),
-                    ),
 
 
                                   Padding(
@@ -98,7 +98,7 @@ class _FlashSaleState extends State<FlashSale> {
                             )],
                         ),
                       ),
-                    ),
+                  ),
                 );
               },
             );

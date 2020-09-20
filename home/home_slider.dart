@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'all_furniture.dart';
+import '../lib/all_furniture.dart';
 class CarouselWithIndicatorDemo extends StatefulWidget {
   @override
   _CarouselWithIndicatorDemoState createState() => _CarouselWithIndicatorDemoState();

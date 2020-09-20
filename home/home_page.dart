@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hello/flash_sale_slider.dart';
+import 'file:///G:/Flutter/projects/hello/home/flash_sale_slider.dart';
 import 'package:hello/navigator_drawer.dart';
-import 'all_furniture.dart';
-import 'home_slider.dart';
-
+import '../lib/bottom_appbar_pages/bottom_appbar.dart';
+import 'package:hello/all_furniture.dart';
+import 'file:///G:/Flutter/projects/hello/home/home_slider.dart';
+import 'weekly_best_sellers.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -23,37 +24,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.greenAccent,
       ),
       drawer:NavigatorDrawer() ,
-      bottomNavigationBar: BottomAppBar(
-
-        shape: const CircularNotchedRectangle(),
-        child: Container(height: 50.0,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left:20.0,),
-              child: IconButton(icon: Icon(Icons.supervisor_account),
-                onPressed: (){},),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left:20.0,),
-              child: IconButton(icon: Icon(Icons.add_shopping_cart),
-                onPressed: (){},),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left:120.0,),
-              child: IconButton(icon: Icon(Icons.settings),
-                onPressed: (){},),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left:20.0),
-              child: IconButton(icon:Icon( Icons.filter_list),
-                color: Colors.black,
-                onPressed: (){},
-              ),
-            )
-          ],
-        ),),
-      ),
+      bottomNavigationBar: BottomAppBarr(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.greenAccent,
         onPressed: () => setState(() {
@@ -128,10 +99,37 @@ class _HomePageState extends State<HomePage> {
 
                     ),
             FlashSale(),
-
-
                   ],
-                )
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left:20.0,right:20.0,bottom: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween
+                        ,
+                        children: [
+                          _drawHeader('Weekly Best Sellers'),
+                          Container(width: 90,height: 30,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.greenAccent
+                            ),
+                            child: FlatButton(onPressed: (){},
+                              child: Text('View All',style: TextStyle(fontSize: 18,
+                                  color: Colors.white
+                                //    fontFamily: 'Merriweather'
+                              ),),
+                            ),
+                          )
+                        ],
+                      ),
+
+                    ),
+                    WeeklyBestSellers(),
+                  ],
+                ),
+
               ],
             ),
         ),
