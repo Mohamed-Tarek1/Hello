@@ -120,7 +120,7 @@ class _MyCartState extends State<MyCart> {
                                         borderRadius: BorderRadius.circular(10.0),
                                         color: Colors.indigo.shade700),
                                     child: FlatButton(
-                                      child: Text('Apply',style: TextStyle(color: Colors.white,fontSize: 25),),
+                                      child: Text('Apply',style: TextStyle(color: Colors.white,fontSize: 20),),
                                       onPressed: (){
 
                                       },

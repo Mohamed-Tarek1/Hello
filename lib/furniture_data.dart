@@ -1,9 +1,14 @@
+import 'package:flutter/material.dart';
+
 class Furniture{
-   String imageURL,name;
-   double price;
-  Furniture( String URL, String n, double p){
-    imageURL=URL;
-    name = n;
-    price=p;
-  }
+  final String id;
+   final String imageURL,name;
+   final double price;
+   bool isFavorite;
+  Furniture({
+  @required this.id ,
+  @required this.imageURL,
+  @required this.name,
+  @required this.price,
+  this.isFavorite= false} );
 }

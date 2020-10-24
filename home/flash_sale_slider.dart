@@ -86,9 +86,9 @@ class _FlashSaleState extends State<FlashSale> {
                                       children: [
                                         Text("\$${SD.salesData[_current].newprice} ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.blue,)),
                                         SizedBox(width: 10.0,),
-                                        Text("\$${SD.salesData[_current].price} ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.blue,
+                                        Text("\$${SD.salesData[_current].price} ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.red,
                                             decoration: TextDecoration.lineThrough ,decorationColor: Colors.red,decorationThickness: 20,decorationStyle: TextDecorationStyle.double ),
-                                            maxLines: 2,textDirection: TextDirection.ltr),
+                                            maxLines: 2,textDirection: TextDirection.ltr,),
                                       ],
                                     ),
                                   ),

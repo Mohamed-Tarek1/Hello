@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'file:///G:/Flutter/projects/hello/home/flash_sale_slider.dart';
-import 'package:hello/navigator_drawer.dart';
+import 'package:hello/side_list/navigator_drawer.dart';
 import '../lib/bottom_appbar_pages/bottom_appbar.dart';
 import 'package:hello/all_furniture.dart';
 import 'file:///G:/Flutter/projects/hello/home/home_slider.dart';
 import 'weekly_best_sellers.dart';
+import 'package:hello/pages/dining_room.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -49,15 +51,21 @@ class _HomePageState extends State<HomePage> {
       ),
           Column(
 
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _drawHeader('Product Category'),
+              Transform.translate(
+offset: Offset(-90,0),
+                  child: _drawHeader('Product Category')),
               Padding(
                 padding: const EdgeInsets.only(left:10.0,right: 10.0,top: 5.0,bottom: 5.0),
                 child: Row(
                   children: [
-                    _drawCategory(Icon(Icons.local_pizza,color: Colors.greenAccent,size: 40,), 'Dining Room',(){}),
-                    _drawCategory(Icon(Icons.hotel,color: Colors.greenAccent,size: 40,), 'Bed Room',(){}),
+                    _drawCategory(Icon(Icons.local_pizza,color: Colors.greenAccent,size: 40,), 'Dining Room',(){
+                      Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>DiningRoom()));
+                    }),
+                    _drawCategory(Icon(Icons.hotel,color: Colors.greenAccent,size: 40,), 'Bed Room',(){
+                      Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>DiningRoom()));
+                    }),
                   ],
                 ),
               ),
@@ -65,8 +73,11 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(left:10.0,right: 10.0,top: 5.0,bottom: 5.0),
                 child: Row(
                   children: [
-                    _drawCategory(Icon(Icons.child_friendly,color: Colors.greenAccent,size: 40,), 'Babies',(){}),
-                    _drawCategory(Icon(Icons.restaurant,color: Colors.greenAccent,size: 40,), 'Kitchen',(){}),
+                    _drawCategory(Icon(Icons.child_friendly,color: Colors.greenAccent,size: 40,), 'Babies',(){
+                      Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>DiningRoom()));
+                    }),
+                    _drawCategory(Icon(Icons.restaurant,color: Colors.greenAccent,size: 40,), 'Kitchen',(){
+                      Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>DiningRoom()));}),
                   ],
                 ),
               ),
@@ -143,7 +154,8 @@ Widget _drawHeader(String title){
         fontSize: 20.0,
         color: Colors.grey.shade700,
         fontFamily: 'Merriweather',
-        fontWeight: FontWeight.bold
+        fontWeight: FontWeight.bold,
+
       ),
     );
 }
@@ -152,8 +164,8 @@ Widget _drawCategory(Icon icon , String type,Function onpress){
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         child: Container(
-          width: 165,
-height: 125,
+          width: 166,
+height: 130,
 decoration: BoxDecoration(
   borderRadius: BorderRadius.circular(10),
   color: Colors.white,
@@ -162,19 +174,22 @@ decoration: BoxDecoration(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               icon,
-              Text(type ,style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 24,
-                fontFamily: 'Merriweather'
-                  ,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 2,
+              SizedBox(height: 10.0,),
+              Flexible(
+                child: Text(type ,style: TextStyle(
+                  color: Colors.grey.shade600,
+                  fontSize: 24,
+                  fontFamily: 'Merriweather'
+                    ,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+                ),
               )
             ],
           ),
         ),
-        onTap: onpress(),
+        onTap: onpress,
       ),
     );
 }

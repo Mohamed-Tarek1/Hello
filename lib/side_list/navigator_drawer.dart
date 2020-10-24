@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'file:///G:/Flutter/projects/hello/home/home_page.dart';
-
-import 'package:hello/nav_menu.dart';
-import 'package:hello/signing_page.dart';
-
+import 'my_profile.dart';
+import 'signing_page.dart';
+import 'nav_menu.dart';
 class NavigatorDrawer extends StatefulWidget {
   static bool isLoggedIn=false;
 
@@ -22,6 +21,7 @@ class _NavigatorDrawerState extends State<NavigatorDrawer> {
     super.initState();
     if(NavigatorDrawer.isLoggedIn ==true){
       navigationmenu.add(NavMenu(title: 'Logout',destination: ()=> HomePage()));
+      navigationmenu.add( NavMenu(title: 'My Profile',destination: ()=> MyProfile()));
     }else{
       navigationmenu.add(NavMenu(title: 'Login',destination: ()=> SigningPage()));
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:hello/all_sales.dart';
 class WeeklyBestSellers extends StatefulWidget {
   @override
   _WeeklyBestSellersState createState() => _WeeklyBestSellersState();
@@ -8,6 +8,7 @@ class WeeklyBestSellers extends StatefulWidget {
 
 class _WeeklyBestSellersState extends State<WeeklyBestSellers> {
   @override
+  final SalesData SD =SalesData();
   Widget build(BuildContext context) {
     return Container(
 
@@ -34,7 +35,7 @@ class _WeeklyBestSellersState extends State<WeeklyBestSellers> {
                         child:   Container(
                           width: 150,
                           height: 75,
-                         child: Image (image: NetworkImage('https://freepngimg.com/thumb/aquarium/45759-2-red-sofa-png-file-hd.png'),fit: BoxFit.fitWidth),
+                         child: Image (image: NetworkImage(SD.salesData[index].imageURL),fit: BoxFit.fill),
 
                         ),
                       ),
@@ -71,7 +72,7 @@ class _WeeklyBestSellersState extends State<WeeklyBestSellers> {
                   crossAxisAlignment: CrossAxisAlignment.start,
 
                   children: [
-                    Text('Modern Red Sofa',style: TextStyle(color: Colors.black,fontFamily: 'Merriweather',fontSize: 17),
+                    Text(SD.salesData[index].name.substring(0,16)+'..',style: TextStyle(color: Colors.black,fontFamily: 'Merriweather',fontSize: 17),
                     ),Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -79,9 +80,9 @@ class _WeeklyBestSellersState extends State<WeeklyBestSellers> {
                           Icons.monetization_on,color: Colors.blue.shade800,size: 25,
                         ),
                         SizedBox(width: 5.0,),
-                            Text("\$70 ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.blue,fontFamily: 'Merriweather')),
+                            Text("\$${SD.salesData[index].newprice} ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.blue,fontFamily: 'Merriweather')),
                             SizedBox(width: 10.0,),
-                            Text("\$100 ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.red,fontFamily: 'Merriweather',
+                            Text("\$${SD.salesData[index].price} ", style: TextStyle(fontSize: 20.0,wordSpacing: 1,color: Colors.red,fontFamily: 'Merriweather',
                                 decoration: TextDecoration.lineThrough ,decorationColor: Colors.red,decorationThickness: 0.8,
                                 decorationStyle: TextDecorationStyle.double ),
                                 maxLines: 2,textDirection: TextDirection.ltr),

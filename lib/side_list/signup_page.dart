@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello/signing_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'signing_page.dart';
 
 class SignUp extends StatefulWidget {
   @override
