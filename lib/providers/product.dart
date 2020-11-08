@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-class Furniture{
+class Furniture with ChangeNotifier{
   final String id;
    final String imageURL,name;
    final double price;
@@ -11,4 +12,11 @@ class Furniture{
   @required this.name,
   @required this.price,
   this.isFavorite= false} );
+
+
+  void toggleFavoriteStatus(){
+    isFavorite=!isFavorite;
+    notifyListeners();
+  }
+
 }

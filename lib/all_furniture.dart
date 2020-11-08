@@ -1,5 +1,5 @@
 
-import 'furniture_data.dart';
+import 'providers/product.dart';
 class FurnitureData{
   List<Furniture> data=[
 ];

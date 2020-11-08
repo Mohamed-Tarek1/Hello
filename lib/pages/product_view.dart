@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:hello/providers/product.dart';
+import 'package:provider/provider.dart';
 import 'product_details.dart';
 class Product extends StatelessWidget {
-  final String id,title,imgURL;
-  bool isFavorite;
-  double price;
-  Product({this.id,this.title,this.imgURL,this.price,this.isFavorite});
   @override
   Widget build(BuildContext context) {
+  final loadedProduct = Provider.of<Furniture>(context);
     return ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
+      borderRadius: BorderRadius.circular(20.0),
         child: GridTile(
-          child:  GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>ProductDetailsScreen(title: title,)));
+    child:  GestureDetector(
+    onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder:  (context)=>ProductDetailsScreen(title: loadedProduct.name,)));
               },
               child:Image(
-        image: NetworkImage(imgURL),
+        image: NetworkImage(loadedProduct.imageURL),
         fit: BoxFit.fill,
           )),
           footer: GridTileBar(
         backgroundColor: Colors.greenAccent.withOpacity(.8),
-        title: Text(title,textAlign: TextAlign.center,  style: TextStyle(fontSize: 20),),
+        title: Text(loadedProduct.name,textAlign: TextAlign.center,  style: TextStyle(fontSize: 20),),
         leading: IconButton(
           icon: Icon(
-            Icons.favorite,
+          loadedProduct.isFavorite? Icons.favorite: Icons.favorite_border,
             size: 20,
-            color: isFavorite ==true? Colors.red : Colors.white,
+            //color: isFavorite ==true? Colors.red : Colors.white,
           ),
           onPressed: (){
-            isFavorite =true;
+            loadedProduct.toggleFavoriteStatus();
           },
         ),
         trailing: IconButton(

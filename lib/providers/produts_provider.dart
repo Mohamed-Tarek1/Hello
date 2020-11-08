@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hello/furniture_data.dart';
-
-
+import 'package:hello/providers/product.dart';
+import 'package:flutter/foundation.dart';
 class ProviderProducts extends ChangeNotifier{
 List <Furniture> _items= [  Furniture(id: 'p1',imageURL:'https://image.freepik.com/free-photo/view-working-interior-with-white-wall-empty-room_41470-347.jpg', name: 'Lap Table with a chair',price: 60),
   Furniture(id: 'p2',imageURL:'https://freepngimg.com/thumb/aquarium/45759-2-red-sofa-png-file-hd.png',name:  'Couch',price: 60,isFavorite: false ),
@@ -14,9 +13,7 @@ List<Furniture> get items{
 }
 
 void addProduct(){
-
   notifyListeners();
 }
-
     
 }
