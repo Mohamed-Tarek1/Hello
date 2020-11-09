@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello/pages/favorites.dart';
 import 'my_cart.dart';
 
 class BottomAppBarr extends StatelessWidget {
@@ -35,7 +36,11 @@ class BottomAppBarr extends StatelessWidget {
               padding: const EdgeInsets.only(left:20.0),
               child: IconButton(icon:Icon( Icons.favorite),
                 color: Colors.black,
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return Favorites();
+                  }));
+                },
               ),
             )
           ],

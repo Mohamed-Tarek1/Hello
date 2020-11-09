@@ -22,8 +22,8 @@ class DiningRoom extends StatelessWidget {
           body: GridView.builder(
             padding: EdgeInsets.all(13.0),
             itemCount: products.length,
-            itemBuilder: (ctx,i)=>  ChangeNotifierProvider(
-              create: (c)=> products[i],
+            itemBuilder: (ctx,i)=>  ChangeNotifierProvider.value(
+              value: products[i],
               child:Product(
                 //title: products[i].name,
                 // id: products[i].id,

@@ -11,7 +11,9 @@ List <Furniture> _items= [  Furniture(id: 'p1',imageURL:'https://image.freepik.c
 List<Furniture> get items{
   return[..._items];
 }
-
+List<Furniture> get favoriteItems{
+  return _items.where((element) => element.isFavorite).toList();
+}
 void addProduct(){
   notifyListeners();
 }
